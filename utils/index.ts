@@ -38,6 +38,15 @@ export async function fetchAccessories(){
     return result
 }
 
+export async function fetchWatch(){
+    const response = await fetch("https://jsonserver.reactbd.com/watch")
+
+    const result = await response.json()
+
+    return result
+
+}
+
 // export async function fetchProductDetails(id:any){
 //     // const response = await fetch(`https://fakestoreapi.com/products/${id}`)
 

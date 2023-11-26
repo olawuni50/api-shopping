@@ -25,6 +25,10 @@ const Navbar = () =>{
                     <li className="font-bold">Accessories</li>
                     </Link>
 
+                    <Link href="/watches">
+                    <li className="font-bold">Watches</li>
+                    </Link>
+
                     <li>
                         <Button text="Sign In" />
                     </li>

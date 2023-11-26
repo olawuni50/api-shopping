@@ -1,21 +1,21 @@
-import Image from "next/image"
 import { ProductProps } from "@/types"
+import Image from 'next/image'
+import Link from 'next/link'
 import Button from "./Button"
-import Link from "next/link"
 
-interface Props{
-    product: ProductProps
+interface Props {
+    product:ProductProps
 }
 
-
-
-const ProductCard = ({product}:Props) =>{
-    const {title, price, _id, image, rating} = product
+const PhoneCard = ({product}:Props) => {
+    const {title, price, _id, image} = product
+    
     return(
         <section className="p-3 shadow-md h-96 mb-10">
             <Link href={{pathname: `/shopping/${title}/`, query:{_id: product?._id}}}>
            
            <div className="flex justify-center">
+         
             <Image src={image} alt={title} width={200} height={250} className="object-contain" />
 
             </div>
@@ -39,4 +39,4 @@ const ProductCard = ({product}:Props) =>{
     )
 }
 
-export default ProductCard
+export default PhoneCard

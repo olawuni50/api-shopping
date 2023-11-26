@@ -1,21 +1,22 @@
-import Image from "next/image"
 import { ProductProps } from "@/types"
-import Button from "./Button"
 import Link from "next/link"
+import Image from 'next/image'
+import Button from "./Button"
 
 interface Props{
-    product: ProductProps
+    accessory: ProductProps
 }
 
+const AccessoryCard = ({accessory}: Props) =>{
+    const {title, price, image} = accessory
 
-
-const ProductCard = ({product}:Props) =>{
-    const {title, price, _id, image, rating} = product
     return(
         <section className="p-3 shadow-md h-96 mb-10">
-            <Link href={{pathname: `/shopping/${title}/`, query:{_id: product?._id}}}>
+
+            <Link href={{pathname: `/shopping/${title}/`, query:{_id: accessory?._id}}}>
            
            <div className="flex justify-center">
+         
             <Image src={image} alt={title} width={200} height={250} className="object-contain" />
 
             </div>
@@ -36,7 +37,8 @@ const ProductCard = ({product}:Props) =>{
         
         </section>
 
+
     )
 }
 
-export default ProductCard
+export default AccessoryCard

@@ -21,7 +21,7 @@ export default async function Home() {
       <section className="max-container">
       <h1 className="font-bold text-3xl text-blue-500 leading-loose mb-5">New Products</h1>
        
-       <div  className="grid grid-cols-4 gap-10 max-sm:grid-cols-2">
+       <div  className="grid grid-cols-4 gap-10 max-sm:grid-cols-1">
         {isDataEmpty ? (
           <div>No Data</div>
         ):(

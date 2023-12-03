@@ -25,13 +25,9 @@ const ProductCard = ({product}:Props) =>{
             <div className="mt-1 mb-5 font-bold">
             ${price}             {/* {rating} */}
             </div>
-
-
             
             <Button text="Add to Cart" containerStyle="w-full"/>            
-            </Link>
-
-             
+            </Link>          
 
         
         </section>

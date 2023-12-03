@@ -23,3 +23,11 @@
 .btnStyle {
   @apply bg-blue-500 text-white font-bold p-2 rounded cursor-pointer shadow-md
 }
+
+.promo-card {
+  @apply flex items-center p-5 rounded shadow-md
+}
+
+.promo-text {
+  @apply text-2xl font-bold mb-10 leading-relaxed
+}

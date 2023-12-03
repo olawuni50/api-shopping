@@ -1,4 +1,5 @@
-import { Hero, ProductCard } from '@/components'
+import { Hero, ProductCard, Promo, PromoChristmas } from '@/components'
+
 import { ProductProps } from '@/types'
 import { fetchProduct } from '@/utils'
 import Image from 'next/image'
@@ -18,10 +19,16 @@ export default async function Home() {
         <Hero />
       </section>
 
-      <section className="max-container">
-      <h1 className="font-bold text-3xl text-blue-500 leading-loose mb-5">New Products</h1>
+      
+      <section className="max-container mb-5">        
+        <Promo />
+        </section>
+
+        <section className="max-container">
+      <h1 className="font-bold text-3xl text-blue-500 leading-loose mb-5 mt-10">Popular Products</h1>
        
        <div  className="grid grid-cols-4 gap-10 max-sm:grid-cols-1">
+       <PromoChristmas />
         {isDataEmpty ? (
           <div>No Data</div>
         ):(
@@ -32,6 +39,8 @@ export default async function Home() {
             </div>
           ))
         )}
+
+        
        
        </div>
         

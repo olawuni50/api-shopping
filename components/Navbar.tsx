@@ -1,18 +1,31 @@
+"use client"
+
+import {useState} from 'react'
 import Button from "./Button"
 import Link from 'next/link'
+import SignUp from "./SignUp"
 
 
 
 const Navbar = () =>{
+    const [isSignupFormOpen, setIsSignupFormOpen] = useState(false);
+
+    const toggleForm = () => {
+        setIsSignupFormOpen(!isSignupFormOpen)
+      }
+    
+
     return(
         <section>
+            <SignUp isSignupFormOpen={isSignupFormOpen} toggleForm={toggleForm} />
             <nav>
                 <ul className="flex justify-between max-container py-4 items-center">
                     
                     <Link href="/">
-                    <li className="text-2xl font-bold text-bold">ShopAPI</li>
+                    <div className="text-2xl font-bold text-bold">ShopAPI</div>
                     </Link>
 
+                    <div className="flex justify-between gap-10">
                     <Link href="/phones">
                     <li className="font-bold">Phones</li>
                     </Link>
@@ -29,9 +42,13 @@ const Navbar = () =>{
                     <li className="font-bold">Watches</li>
                     </Link>
 
-                    <li>
-                        <Button text="Sign In" />
-                    </li>
+                   </div>                 
+                                          
+                    <div>
+                    <Button handleClick={toggleForm} text="Sign Up" />
+                        <Button  text="Sign In" />
+                    </div>
+                    
                 </ul>
             </nav>
             </section>

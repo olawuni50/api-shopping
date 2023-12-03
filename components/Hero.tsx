@@ -5,7 +5,7 @@ import Image from "next/image"
 
 const Hero = () =>{
     return(
-        <section className="min-h-screen">
+        <section className="min-h-0">
 
             <div className="flex justify-between items-center max-container max-lg:flex-col">
 

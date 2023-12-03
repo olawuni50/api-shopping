@@ -41,7 +41,7 @@ const SignUp :FC<SignUpProps> = props => {
     } catch (error) {
       setIsFormSubmit(false);
       setLoading(false)
-      toast.error('Something went wrong')
+      toast.error('User already exists, Please try another email')
       console.log("Error", error);
 
     }

@@ -4,19 +4,33 @@ import {useState} from 'react'
 import Button from "./Button"
 import Link from 'next/link'
 import SignUp from "./SignUp"
+import {signIn, useSession, signOut} from 'next-auth/react'
 
 
 
 const Navbar = () =>{
     const [isSignupFormOpen, setIsSignupFormOpen] = useState(false);
 
+    const {status, data:session} = useSession({required:true, onUnauthenticated(){
+    }})
+
+    console.log(session)
+
     const toggleForm = () => {
         setIsSignupFormOpen(!isSignupFormOpen)
+      }
+
+      const signinHandler = async () =>{
+        try{
+          await signIn();
+        }catch(error){
+          console.log('SIGN IN ERROR', error)    
+        }
       }
     
 
     return(
-        <section>
+        <header>
             <SignUp isSignupFormOpen={isSignupFormOpen} toggleForm={toggleForm} />
             <nav>
                 <ul className="flex justify-between max-container py-4 items-center">
@@ -42,16 +56,23 @@ const Navbar = () =>{
                     <li className="font-bold">Watches</li>
                     </Link>
 
-                   </div>                 
-                                          
+                   </div>      
+                   {session ? (
+                    <>
+                    <div>{session?.user?.email}</div>
+                    
+                    </>
+                   ): (
                     <div>
-                    <Button handleClick={toggleForm} text="Sign Up" />
-                        <Button  text="Sign In" />
+                        <Button handleClick={toggleForm} text="Sign Up" />
+                        <Button handleClick={signinHandler}  text="Sign In" />
+                        
                     </div>
+                   )}        
                     
                 </ul>
             </nav>
-            </section>
+            </header>
     )
 }
 

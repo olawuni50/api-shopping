@@ -3,6 +3,7 @@ import {FC, useRef, useState} from 'react'
 import axios from 'axios'
 import {toast} from 'react-hot-toast'
 
+
 interface SignUpProps{
     isSignupFormOpen: boolean;
     // function that returns nothing
@@ -12,7 +13,8 @@ interface SignUpProps{
 
 const SignUp :FC<SignUpProps> = props => {
       
-      const {isSignupFormOpen, toggleForm} = props
+      const {isSignupFormOpen, toggleForm} = props  
+      
 
       // disable button when form is submitting
       const [isFormSubmitting, setIsFormSubmit] = useState(false);
@@ -20,9 +22,10 @@ const SignUp :FC<SignUpProps> = props => {
 
       const emailRef = useRef<HTMLInputElement>(null)
       const passwordRef = useRef<HTMLInputElement>(null)
+      const nameRef = useRef<HTMLInputElement>(null)
 
   const signupHandler = async () => {
-    if(!emailRef.current || !passwordRef.current) return;
+    if(!emailRef.current || !passwordRef.current || !nameRef.current) return;
 
     setIsFormSubmit(true);
     setLoading(true)
@@ -31,6 +34,7 @@ const SignUp :FC<SignUpProps> = props => {
       const response = await axios.post("/api/sign-up", {
         email: emailRef.current.value,
         password: passwordRef.current.value,
+        name: nameRef.current.value,
       });
       if(response.data)toast.success(`${response.statusText}. Please sign in`)
       console.log(response)
@@ -48,6 +52,7 @@ const SignUp :FC<SignUpProps> = props => {
     toggleForm()
   }
 
+  
     return isSignupFormOpen ? (
         <div className="fixed top-0 left-0 w-full h-screen flex justify-center items-center bg-gray-900 bg-opacity-50 z-40">
           
@@ -56,6 +61,13 @@ const SignUp :FC<SignUpProps> = props => {
                 <form>
   
 
+  <label className="block" >
+    <span className="block text-md mb-2 font-medium text-slate-700">Name</span>
+    <input type="text" ref={nameRef} id='name' className="peer ... p-2 rounded outline-none w-full bg-slate-200"/>
+    <p className="mt-2 invisible peer-invalid:visible text-pink-600 text-sm">
+      Please provide a valid Name.
+    </p>
+  </label>
   <label className="block" >
     <span className="block text-md mb-2 font-medium text-slate-700">Email</span>
     <input type="email" ref={emailRef} id='email' className="peer ... p-2 rounded outline-none w-full bg-slate-200"/>
@@ -76,10 +88,10 @@ const SignUp :FC<SignUpProps> = props => {
     {/* <Button text="Sign up" handleClick={signupHandler}   /> */}
     <button  type="submit"  onClick={signupHandler} disabled={isFormSubmitting} 
     className="bg-purple-900 text-white py-2 px-4 rounded shadow-lg cursor-pointer">{loading ? "Loading..." : "Sign Up"}</button>
-    
-  </div>
-
+</div>
+ 
 </form>
+                 
             </div>
 
         </div>

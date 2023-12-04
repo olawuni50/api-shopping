@@ -18,7 +18,7 @@ export default async function Page({searchParams}: Props) {
 
     <Image src={detail?.image} alt={detail?.name} width={500} height={550} className="object-contain" />
     <div className="w-3/5 p-2">
-        <h1 className="mb-1 bg-blue-500 p-1 text-white w-36">Official Store</h1>
+        <h1 className="mb-1 bg-blue-500 p-2 text-white rounded shadow-lg w-36">Official Store</h1>
         <h1 className="text-4xl font-bold leading-normal mb-3"> {detail?.title}</h1>
         <h2 className="font-semibold text-xl mb-3">Price: ${detail?.price}</h2>
         <h2 className="mb-3 line-through">${detail?.previousPrice}</h2>

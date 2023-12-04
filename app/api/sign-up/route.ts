@@ -3,9 +3,9 @@ import {MongoClient} from 'mongodb'
 import bcrypt from 'bcrypt'
 
 export async function POST(req:Request, res:Response){
-    const {email, password} = await req.json();
+    const {email, password, name} = await req.json();
 
-    if(!email || !password) {
+    if(!email || !password || !name) {
         return new NextResponse("Please all fields are required", {status:400})
     }
     try{
@@ -21,7 +21,7 @@ export async function POST(req:Request, res:Response){
         const hashedPassword = await bcrypt.hash(password, 12);
 
         // Storing users
-        const result = await db.collection('users').insertOne({email, hashedPassword})
+        const result = await db.collection('users').insertOne({email, hashedPassword, name})
 
         await client.close();
 

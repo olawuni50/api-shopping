@@ -20,6 +20,7 @@ const Navbar = () =>{
         setIsSignupFormOpen(!isSignupFormOpen)
       }
 
+      // Sign In
       const signinHandler = async () =>{
         try{
           await signIn();
@@ -27,7 +28,16 @@ const Navbar = () =>{
           console.log('SIGN IN ERROR', error)    
         }
       }
-    
+
+      // Sign Out
+      const signoutHandler = async () =>{
+        try{
+          await signOut();
+        }catch(error){
+          console.log('SIGN out ERROR', error)    
+        }
+      }
+      
 
     return(
         <header>
@@ -59,12 +69,13 @@ const Navbar = () =>{
                    </div>      
                    {session ? (
                     <>
-                    <div>{session?.user?.email}</div>
+                    <div>{session?.user?.name}</div>                    
+                    <Button handleClick={signoutHandler} text='Log out' />
                     
                     </>
                    ): (
                     <div>
-                        <Button handleClick={toggleForm} text="Sign Up" />
+                        <Button handleClick={toggleForm} text="Sign Up" containerStyle="mr-2" />
                         <Button handleClick={signinHandler}  text="Sign In" />
                         
                     </div>

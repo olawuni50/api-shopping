@@ -18,6 +18,7 @@ if(process.env.NODE_ENV === 'development'){
         client = new MongoClient(uri);
         global._mongoClientPromise = client.connect();
     }
+    clientPromise = global._mongoClientPromise
 }else{
     client = new MongoClient(uri);
     clientPromise = client.connect();
